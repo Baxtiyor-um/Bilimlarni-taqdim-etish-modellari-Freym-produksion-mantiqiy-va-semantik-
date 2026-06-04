@@ -1,0 +1,82 @@
+# =====================================================================
+# 1. FREYM MODELI (Frame Model)
+# Obyekt, uning slotlari (xususiyatlari) va qiymatlarini ifodalaydi.
+# =====================================================================
+print("--- 1. FREYM MODELI NATIJASI ---")
+
+# Bemor uchun freym (shablon) yaratamiz
+bemor_freymi = {
+    "Ism": "Anvar",
+    "Kasallik_Simptomi": "Isitma",
+    "Harorat": 38.5,
+    "Shifokor": "Terapevt",
+}
+
+for slot, qiymat in bemor_freymi.items():
+    print(f"[{slot}]: {qiymat}")
+print("=" * 50 + "\n")
+
+
+# =====================================================================
+# 2. PRODUKSION MODEL (Production Model)
+# "Agar (If) ... U holda (Then) ..." qoidalari zanjiri.
+# =====================================================================
+print("--- 2. PRODUKSION MODEL NATIJASI ---")
+
+
+def produksion_tizim(simptom):
+    # Qoidalar bazasi (Rules Base)
+    if simptom == "Isitma":
+        return "Paratsetamol ichish va dam olish tavsiya etiladi."
+    elif simptom == "Yo'tal":
+        return "Yo'talga qarshi sirop va iliq suyuqlik ichish kerak."
+    else:
+        return "Umumiy ko'rik uchun shifokorga murojaat qiling."
+
+
+tashxis = produksion_tizim(bemor_freymi["Kasallik_Simptomi"])
+print(f"Qoida: Agar simptom '{bemor_freymi['Kasallik_Simptomi']}' bo'lsa:")
+print(f"Xulosa: {tashxis}")
+print("=" * 50 + "\n")
+
+
+# =====================================================================
+# 3. MANTIQIY MODEL (Logical Model)
+# Matematik yoki mantiqiy (True/False) munosabatlarga asoslanadi.
+# =====================================================================
+print("--- 3. MANTIQIY MODEL NATIJASI ---")
+
+
+def mantiqiy_qoida(bemor_holati, harorat):
+    # Agar bemor haqiqatdan betob bo'lsa va harorati 38 dan baland bo'lsa
+    if bemor_holati == "betob" and harorat > 38.0:
+        return "Zudlik bilan davolanish shart (Kritik holat)."
+    elif bemor_holati == "betob":
+        return "Davolanish kerak."
+    else:
+        return "Davolanish shart emas."
+
+
+bemor_statusi = "betob"
+natija = mantiqiy_qoida(bemor_statusi, bemor_freymi["Harorat"])
+print(f"Mantiqiy shartlar asosida xulosa: {natija}")
+print("=" * 50 + "\n")
+
+
+# =====================================================================
+# 4. SEMANTIK MODEL (Semantic Model)
+# Tushunchalar va ular o'rtasidagi bog'liqliklar tarmog'i (Graph).
+# =====================================================================
+print("--- 4. SEMANTIK MODEL (TARMOQ) NATIJASI ---")
+
+# Semantik tarmoq subyektlar orasidagi aloqani ko'rsatadi
+semantik_tarmoq = {
+    "Anvar": "Kasal bo'ldi -> Isitma bilan",
+    "Isitma": "Simptom hisoblanadi -> Gripp kasalligiga",
+    "Gripp": "Davolanadi -> Shifokor nazoratida",
+    "Shifokor": "Kasb egasi -> Tibbiyot sohasida",
+}
+
+for tushuncha, aloqa in semantik_tarmoq.items():
+    print(f"({tushuncha}) ----> [{aloqa}]")
+print("=" * 50)
